@@ -1,9 +1,9 @@
-" Plugin:	     SpellChecker.vim
-" Author:	     Ajit J. Thakkar (ajit AT unb DOT ca)
-" Last Change: 2003 Feb. 16
-" Version:     1.7
-" URL:	     http://www.unb.ca/chem/ajit/vim.htm
-" Credits:     Inspired by Charles Campbell's engspchk.vim
+" Plugin:		SpellChecker.vim
+" Author:		Ajit J. Thakkar (ajit AT unb DOT ca)
+" Last Change:	2003 Mar. 09
+" Version:	1.8
+" URL:		http://www.unb.ca/chem/ajit/vim.htm
+" Credits:	Inspired by Charles Campbell's engspchk.vim
 "
 " Description:
 " Global Vim Variables:
@@ -55,6 +55,13 @@
 "
 " In the absence of similarly named, user-defined commands, the SpellChecker
 " commands can be issued with just the first three letters, e.g. :SPC
+"
+" Popup Menu:
+" If you have
+"	set mousemodel=popup_setpos
+" in your vimrc, then after spellchecker has been invoked, right-clicking on a
+" word will pop up a menu offering various actions that can be performed on
+" that word.
 "
 " The dialect can be preset for a file by including a directive of the form:
 " 		dialect=CA
@@ -200,6 +207,14 @@ if !exists("*s:SP_DisableMenus")
     if has("gui_running") && has("menu") && &go =~# "m"
       if exists("b:spellcheck")
         silent! nmenu enable Spell.*
+        if &mousemodel == "popup_setpos"
+	nmenu <silent> PopUp.-SpellPop-	:
+	nmenu <silent> PopUp.&Allow\ word\ here<tab>:SPA	:SPAllow<cr>
+	nmenu <silent> PopUp.Save\ to\ &Local\ project\ dictionary<tab>:SPL	:SPLocalSave<cr>
+	nmenu <silent> PopUp.Save\ to\ &Global\ user\ dictionary<tab>:SPG	:SPGlobalSave<cr>
+	nmenu <silent> PopUp.&Remove\ word\ from\ user\ dictionary<tab>:SPR	:SPRemove<cr>
+	nmenu <silent> PopUp.&Modify\ all\ occurences\ of\ word<tab>:SPM	:SPModify<cr>
+        endif
       endif
     endif
   endfun "}}}
@@ -207,6 +222,14 @@ if !exists("*s:SP_DisableMenus")
     if has("gui_running") && has("menu") && &go =~# "m"
       silent! nmenu disable Spell.*
       silent! nmenu enable  Spell.Check\ on/off
+      if &mousemodel == "popup_setpos"
+        silent! unmenu PopUp.-SpellPop-
+        silent! unmenu PopUp.&Allow\ word\ here
+        silent! unmenu PopUp.Save\ to\ &Local\ project\ dictionary
+        silent! unmenu PopUp.Save\ to\ &Global\ user\ dictionary
+        silent! unmenu PopUp.&Remove\ word\ from\ user\ dictionary
+        silent! unmenu PopUp.&Modify\ all\ occurences\ of\ word
+      endif
     endif
   endfun "}}}
   fun! s:SP_DeleteWord(word,dict) "{{{
@@ -242,7 +265,7 @@ if !exists("*s:SP_DisableMenus")
     else
       let msg=msg." spellchecking OFF."
     endif
-    let msg=msg." v1.7"
+    let msg=msg." v1.8"
     echo msg
     unlet msg
   endfun "}}}
@@ -492,7 +515,7 @@ if !exists("*s:SP_DisableMenus")
   endfun "}}}
   " Menus {{{
   if has("gui_running") && has("menu") && &go =~# "m"
-    nmenu <silent> 899.964 Spell.&Next\ spelling\ error<tab>:SPN	:SPNext<cr>
+    nmenu <silent> 899.964 S&pell.&Next\ spelling\ error<tab>:SPN	:SPNext<cr>
     nmenu <silent> 899.966 Spell.&Previous\ spelling\ error<tab>:SPP	:SPPrevious<cr>
     nmenu <silent> 899.967 Spell.-Sec1-	:
     nmenu <silent> 899.968 Spell.&Allow\ word\ here<tab>:SPA	:SPAllow<cr>

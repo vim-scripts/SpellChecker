@@ -1,4 +1,4 @@
-*SpellChecker.txt*		SpellChecker	Last change: 2003 Feb. 17
+*SpellChecker.txt*		SpellChecker	Last change:	2003 Mar. 09
 
 Author:		Ajit J. Thakkar (ajit_at_unb_dot_ca)
 URL:		http://www.unb.ca/chem/ajit/vim.htm
@@ -95,6 +95,13 @@ Use :SPInteract instead of
 
 Unless you have other user-defined commands with similar names, the first
 three letters (all uppercase) are enough to activate the commands.
+
+Popup menu~
+If you have >
+	set mousemodel=popup_setpos
+in your vimrc, then after spellchecker has been invoked, right-clicking on a
+word will pop up a menu offering various actions that can be performed on that
+word.
 
 Why are there so many dictionaries?~
 SpellChecker uses as many as five dictionaries for each document it checks.
