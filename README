@@ -1,0 +1,20 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=499
+
+SpellChecker.vim is a plugin that uses Vim's syntax highlighting facility to help spot spelling errors. The lexicon consists of approximately 53,700 English words, including about 2,700 proper names and 50 acronyms. Three dialects are supported: American (US), British (UK), and Canadian (CA). Misspellings are highlighted as errors, and spellings corresponding to a dialect different from the selected one are highlighted as todo items.
+
+Screenshot:   http://www.unb.ca/chem/ajit/macros/spell.png
+
+Commands, key mappings and menus are provided for turning spell checking on and off, for moving through the errors with or without dialogs, changing dialects, adding and removing words to the global user and local project dictionaries, for accepting words for the current document only, for modifying all occurrences of a word, and for querying SpellChecker settings. 
+
+SpellChecker was inspired by Charles Campbell's engspchk.  SpellChecker uses several ideas but very little unmodified code from engspchk. Both work with vim's syntax facility. Both highlight misspelled words as errors. Both can be used for source code in selected programming languages where only the comments will be spell-checked. The following description may help you to decide whether to use SpellChecker or engspchk.
+
+A unique feature of SpellChecker is project-specific dictionaries. These are dictionaries that are additional to all others, including the global user's dictionary. A project-specific dictionary is used only when checking documents that reside in the same directory as that dictionary. For example, such dictionaries can be useful if a document introduces acronyms or abbreviations specific to that document.
+
+Other features unique to SpellChecker include an interactive mode to step through the errors, user dictionaries that store words with an upper-case letter in a case-sensitive fashion, and a command to save all remaining errors in one step.
+
+Another unique feature of SpellChecker is that it highlights spellings corresponding to a dialect different from the one selected. This helps to ensure that the selected dialect has been used consistently throughout a document.  
+
+SpellChecker loads faster than engspchk because a different and smaller lexicon is used by SpellChecker. The presence of fewer rare words in the lexicon means that spelling errors are less likely to be mistaken for arcane words. For example, if you type "ort he" instead of "or the", SpellChecker will flag an error whereas engspchk won't because "ort" is a rarely-used word (meaning morsel) that is in the engspchk  lexicon. On the other hand, this means that esoteric words may be marked as errors by SpellChecker even though they are perfectly correct. 
+
+At this time, SpellChecker does not incorporate a scheme to offer alternative spellings. It may later.
+
